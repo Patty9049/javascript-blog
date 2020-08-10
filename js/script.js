@@ -1,8 +1,7 @@
 /*document.getElementById('test-button').addEventListener('click', function(){
   const links = document.querySelectorAll('.titles a');
   console.log('links:', links);
-});*/
-
+*/
 
 {
   //titleClickHandler
@@ -26,7 +25,7 @@
 
     for(let activeArticle of activeArticles){
       activeArticle.classList.remove('active');
-    }  
+    }
 
     /* [DONE] get 'href' attribute from the clicked link */
     const articleSelector = clickedElement.getAttribute('href');
@@ -39,17 +38,12 @@
     targetArticle.classList.add('active');
   };
 
-  /*const links = document.querySelectorAll('.titles a');
-    console.log(links)
-    for(let link of links){
-    link.addEventListener('click', titleClickHandler);
-    }*/
-
   //generateTitleLinks
 
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
-    optTitleListSelector = '.titles';
+    optTitleListSelector = '.titles',
+    optArticleTagsSelector = '.post-tags .list';
 
   function generateTitleLinks(){
 
@@ -79,7 +73,6 @@
       /* insert link into titleList */
       titleList.innerHTML = titleList.innerHTML + linkHTML;
       html = html + linkHTML;
-      console.log(html);
     }
     titleList.innerHTML = html;
 
@@ -93,4 +86,51 @@
 
   generateTitleLinks();
 
+  //generateTags
+
+  function generateTags(){
+
+  /* [DONE] find all articles-znajdz wszystkie artykuły */
+    const articles = document.querySelectorAll(optArticleSelector);
+
+  /* [DONE] START LOOP: for every article:  ZACZNIJ PĘTLĘ: dla wszytskich artykułów*/
+    for(let article of articles){
+
+    /* [DONE] find tags wrapper - znajdz tags wrappery */
+      const tagsWrapperList = article.querySelector(optArticleTagsSelector);
+    //tagsWrapperList.innerHTML='';
+
+    /* [DONE] make html variable with empty string - stwórz zmienną html z pustym ciągiem */
+      let html = '';
+
+    /*[DONE] get tags from data-tags attribute - pobierz tagi z atrybutu data-tags */
+      const articleTags = article.getAttribute('data-tags');
+      console.log(articleTags)
+
+    /* split tags into array - podziel tagi na tablice */
+      const articleTagsArray = articleTags.split(' ');
+      console.log(articleTagsArray);
+
+    /* START LOOP: for each tag - ZACZNIJ PĘTLĘ: dla każdego tagu */
+        for(let tag of articleTagsArray){
+
+      /* generate HTML of the link - wygeneruj HTML linku */
+        const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+        console.log(linkHTML);
+
+      /* add generated code to html variable - dodaj wygenerowany kod do zmiennej */
+        tagsWrapperList.innerHTML = tagsWrapperList.innerHTML + linkHTML;
+        html = html + linkHTML;
+
+    /* END LOOP: for each tag - ZAKONCZ PĘTLĘ: dla każdego tagu */
+        }
+    /* insert HTML of all the links into the tags wrapper - wstaw kod HTML wszystkich linków do tags wrapperów*/
+      tagsWrapperList.innerHTML = html;
+
+  /* END LOOP: for every article: - ZAKONCZ PĘTLĘ: dla każdego artykułu */
+    }
+  }
+
+  generateTags();
 }
+
