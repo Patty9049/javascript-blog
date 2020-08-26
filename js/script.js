@@ -77,7 +77,7 @@
   function generateTags(){
 
     //[NEW]
-    let allTags = [];
+    let allTags = {};
 
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -102,9 +102,11 @@
         html = html + linkHTML;
 
         //[NEW]
-        if(allTags.indexOf(linkHTML) == -1){
-          allTags.push(linkHTML);
-        }
+        if(!allTags[tag]){
+          allTags[tag] = 1;
+        } else {
+          allTags[tag]++;
+        };
       }
       tagsWrapperList.innerHTML = html;
 
@@ -112,7 +114,23 @@
     const tagList = document.querySelector('.tags');
     console.log(tagList);
 
-    tagList.innerHTML = allTags.join(' ');
+    //tagList.innerHTML = allTags.join(' ');
+    console.log(allTags);
+
+    /* [NEW] create variable for all links HTML code */
+    let allTagsHTML = '';
+
+    /* [NEW] START LOOP: for each tag in allTags: */
+    for(let tag in allTags){
+      /* [NEW] generate code of a link and add it to allTagsHTML */
+      //allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+      allTagsHTML += '<li><a href="#tag-' + tag + '"><span>' +  tag + ' (' + allTags[tag] + ') '+  '</span></a></li>';
+      console.log(allTagsHTML);
+    }
+    /* [NEW] END LOOP: for each tag in allTags: */
+    const tagsList = document.querySelectorAll(optTagsListSelector);
+    /*[NEW] add HTML from allTagsHTML to tagList */
+    tagList.innerHTML = allTagsHTML;
   }
   generateTags();
 
