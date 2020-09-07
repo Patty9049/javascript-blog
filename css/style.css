@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext");
 /* Variables */
 /* Global */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -49,7 +51,8 @@ body {
       flex: 2 0 0;
 }
 
-.sidebar, .posts {
+.sidebar,
+.posts {
   background: #fff;
   margin-right: 10px;
   padding: 40px;
@@ -75,6 +78,56 @@ body {
 
 .list .active {
   font-weight: bold;
+}
+
+.list.tags .tag-size-1 {
+  font-size: x-small;
+  color: purple;
+}
+
+.list.tags .tag-size-2 {
+  font-size: small;
+  color: orange;
+}
+
+.list.tags .tag-size-3 {
+  font-size: medium;
+  color: #a0be1d;
+}
+
+.list.tags .tag-size-4 {
+  font-size: large;
+  color: green;
+}
+
+.list.tags .tag-size-5 {
+  font-size: x-large;
+  color: #0b79f7;
+}
+
+.list.authors .tag-size-1 {
+  font-size: x-small;
+  color: purple;
+}
+
+.list.authors .tag-size-2 {
+  font-size: small;
+  color: orange;
+}
+
+.list.authors .tag-size-3 {
+  font-size: medium;
+  color: #a0be1d;
+}
+
+.list.authors .tag-size-4 {
+  font-size: large;
+  color: green;
+}
+
+.list.authors .tag-size-5 {
+  font-size: x-large;
+  color: #0b79f7;
 }
 
 .list-horizontal li {
